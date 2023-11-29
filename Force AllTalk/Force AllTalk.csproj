@@ -1,0 +1,16 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net7.0</TargetFramework>
+    <RootNamespace>Force_AllTalk</RootNamespace>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+	<ItemGroup>
+		<Reference Include="CounterStrikeSharp.API">
+			<HintPath>..\dllinclude\CounterStrikeSharp.API.dll</HintPath>
+		</Reference>
+	</ItemGroup>
+
+</Project>
