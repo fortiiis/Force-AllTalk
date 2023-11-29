@@ -1,6 +1,8 @@
 ﻿using CounterStrikeSharp.API.Modules.Cvars;
 using CounterStrikeSharp.API.Core;
 using System.Text.Json;
+using CounterStrikeSharp.API.Modules.Config;
+using System.Runtime.InteropServices.JavaScript;
 using System.Text.Json.Nodes;
 using System.Text.Json.Serialization;
 
@@ -37,37 +39,10 @@ namespace Force_AllTalk
             sv_talk_enemy_dead = ConVar.Find("sv_talk_enemy_dead");
             sv_talk_enemy_living = ConVar.Find("sv_talk_enemy_living");
 
-            RegisterEventHandler<EventGameStart>(OnGameStart);
-            RegisterEventHandler<EventGameNewmap>(OnNewMap);
+            RegisterEventHandler<EventRoundStart>(OnRoundStart);
         }
 
-        private HookResult OnGameStart(EventGameStart @event, GameEventInfo info)
-        {
-            if (sv_alltalk != null)
-            {
-                sv_alltalk.SetValue(1);
-            }
-            if (sv_deadtalk != null)
-            {
-                sv_deadtalk.SetValue(1);
-            }
-            if ( sv_full_alltalk != null)
-            {
-                sv_full_alltalk.SetValue(1);
-            }
-            if (sv_talk_enemy_dead != null)
-            {
-                sv_talk_enemy_dead.SetValue(1);
-            }
-            if (sv_talk_enemy_living != null)
-            {
-                sv_talk_enemy_living.SetValue(1);
-            }
-
-            return HookResult.Continue;
-        }
-
-        private HookResult OnNewMap(EventGameNewmap @event, GameEventInfo info)
+        private HookResult OnRoundStart(EventRoundStart @event, GameEventInfo info)
         {
             if (sv_alltalk != null)
             {
