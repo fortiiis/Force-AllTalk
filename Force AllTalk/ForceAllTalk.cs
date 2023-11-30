@@ -1,8 +1,6 @@
 ﻿using CounterStrikeSharp.API.Modules.Cvars;
 using CounterStrikeSharp.API.Core;
 using System.Text.Json;
-using CounterStrikeSharp.API.Modules.Config;
-using System.Runtime.InteropServices.JavaScript;
 using System.Text.Json.Nodes;
 using System.Text.Json.Serialization;
 
@@ -13,7 +11,7 @@ namespace Force_AllTalk
         public override string ModuleName => "Force AllTalk";
         public override string ModuleAuthor => "Fortis";
         public override string ModuleDescription => "Enables all convar variables";
-        public override string ModuleVersion => "1.0";
+        public override string ModuleVersion => "1.1";
 
         ConVar? sv_alltalk = null!;
         ConVar? sv_deadtalk = null!;
@@ -44,25 +42,27 @@ namespace Force_AllTalk
 
         private HookResult OnRoundStart(EventRoundStart @event, GameEventInfo info)
         {
+            if (!_config.GeneralConfig!.Enabled) return HookResult.Continue;
+
             if (sv_alltalk != null)
             {
-                sv_alltalk.SetValue(1);
+                sv_alltalk.SetValue(true);
             }
             if (sv_deadtalk != null)
             {
-                sv_deadtalk.SetValue(1);
+                sv_deadtalk.SetValue(true);
             }
             if (sv_full_alltalk != null)
             {
-                sv_full_alltalk.SetValue(1);
+                sv_full_alltalk.SetValue(true);
             }
             if (sv_talk_enemy_dead != null)
             {
-                sv_talk_enemy_dead.SetValue(1);
+                sv_talk_enemy_dead.SetValue(true);
             }
             if (sv_talk_enemy_living != null)
             {
-                sv_talk_enemy_living.SetValue(1);
+                sv_talk_enemy_living.SetValue(true);
             }
 
             return HookResult.Continue;
